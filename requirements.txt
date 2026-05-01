@@ -1,7 +1,7 @@
-opencv-python
 ultralytics
 streamlit
 Pillow
 pandas
 numpy
 matplotlib
+opencv-python==4.8.1.78
