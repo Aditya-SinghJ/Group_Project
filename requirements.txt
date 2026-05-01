@@ -5,11 +5,3 @@ Pillow
 pandas
 numpy
 matplotlib
-scikit-learn
-scipy
-seaborn
-plotly
-cv2
-Image
-skimage
-sqlite3
