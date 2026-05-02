@@ -194,19 +194,25 @@ def chart_stacked_bar(df):
     return fig
 
 @st.cache_data
+def get_top_k(df, k):
+    return df.nlargest(k, "total") if not df.empty else pd.DataFrame()
+
 def chart_top_k(df, k=5):
+    top = get_top_k(df, k)
     fig, ax = plt.subplots(figsize=(8, 4.5))
-    top = df.nlargest(k, "total") if not df.empty else pd.DataFrame()
+
     if top.empty:
         ax.text(0.5, 0.5, "No data available", ha="center")
     else:
         names = [n[:15]+".." if len(n)>15 else n for n in top["image_name"]]
         ax.barh(names, top["total"], color="#f59e0b", alpha=0.8, height=0.6)
         ax.invert_yaxis()
+
     ax.set_title(f"Top {k} Scans with Most Defects", fontweight="bold")
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
     fig.tight_layout()
+
     return fig
 
 # ================================================================
